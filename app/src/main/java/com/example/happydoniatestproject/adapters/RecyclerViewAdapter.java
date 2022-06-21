@@ -41,7 +41,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return list.size();
     }
 
-    public class RVViewHolder extends RecyclerView.ViewHolder {
+    public static class RVViewHolder extends RecyclerView.ViewHolder {
         TextView title;
         TextView distance;
         ImageView image;

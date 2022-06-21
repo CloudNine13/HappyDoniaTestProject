@@ -34,7 +34,7 @@ public class HeaderAdapter extends RecyclerView.Adapter<HeaderAdapter.HeaderView
         return 1;
     }
 
-    public class HeaderViewHolder extends RecyclerView.ViewHolder {
+    public static class HeaderViewHolder extends RecyclerView.ViewHolder {
         TextView location_header;
         public HeaderViewHolder(@NonNull View itemView) {
             super(itemView);

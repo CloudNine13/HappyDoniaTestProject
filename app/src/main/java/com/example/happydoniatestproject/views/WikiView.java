@@ -60,9 +60,7 @@ public class WikiView extends AppCompatActivity implements MainView
         builder.setMessage(message);
         builder.setTitle(title);
         builder.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                (dialogInterface, i) -> {
-                    dialogInterface.dismiss();
-                });
+                (dialogInterface, i) -> dialogInterface.dismiss());
         builder.show();
     }
 
