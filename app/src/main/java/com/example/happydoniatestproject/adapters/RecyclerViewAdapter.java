@@ -42,9 +42,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public static class RVViewHolder extends RecyclerView.ViewHolder {
-        TextView title;
-        TextView distance;
-        ImageView image;
+        private final TextView title;
+        private final TextView distance;
+        private final ImageView image;
 
         public RVViewHolder(@NonNull View itemView) {
             super(itemView);
