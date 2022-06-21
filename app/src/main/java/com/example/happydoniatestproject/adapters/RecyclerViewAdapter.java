@@ -61,7 +61,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 setImage(URL);
             }
             itemView.setOnClickListener(view -> {
-                String url = "https://wikipedia.org/wiki/" + item.get("title");
+                String url = itemView.getResources().getString(R.string.wikipedia_page_url)
+                        + item.get("title");
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(url));
                 view.getContext().startActivity(i);

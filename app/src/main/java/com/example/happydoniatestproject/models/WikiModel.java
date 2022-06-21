@@ -89,22 +89,13 @@ public class WikiModel implements MainModel {
     }
 
     private void getWikiData(List<Double> coordinates) {
-        Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl("https://en.wikipedia.org/w/")
-                .addConverterFactory(GsonConverterFactory.create());
-        Retrofit retrofit = builder.build();
-        String url = "https://en.wikipedia.org/w/api.php?action=query&generator=geosearch" +
-                "&prop=coordinates|pageimages&ggscoord=" + coordinates.get(0)
-                + "|" + coordinates.get(1) + "&ggsradius=10000&format=json&codistancefrompoint="
-                + coordinates.get(0) + "|" + coordinates.get(1);
-        WikiAPI api = retrofit.create(WikiAPI.class);
-        Call<ResponseBody> call = api.getNearbyArticles(url);
+        Call<ResponseBody> call = buildCall(coordinates);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(@NonNull Call<ResponseBody> call,
                                    @NonNull Response<ResponseBody> response) {
                 try {
-                    configurateAdapters(address, CustomJSONParser.ParseModel(response));
+                    configureAdapters(address, CustomJSONParser.ParseModel(response));
                 } catch (JSONException | IOException e) {
                     Log.e(TAG, "Error occurred while configuring the adapters: "
                             + e.getMessage());
@@ -120,7 +111,20 @@ public class WikiModel implements MainModel {
         });
     }
 
-    private void configurateAdapters(String address, List<Map<String, String>> data) {
+    private Call<ResponseBody> buildCall(List<Double> coordinates) {
+        Retrofit.Builder builder = new Retrofit.Builder()
+                .baseUrl("https://en.wikipedia.org/w/")
+                .addConverterFactory(GsonConverterFactory.create());
+        Retrofit retrofit = builder.build();
+        String url = "https://en.wikipedia.org/w/api.php?action=query&generator=geosearch" +
+                "&prop=coordinates|pageimages&ggscoord=" + coordinates.get(0)
+                + "|" + coordinates.get(1) + "&ggsradius=10000&format=json&codistancefrompoint="
+                + coordinates.get(0) + "|" + coordinates.get(1);
+        WikiAPI api = retrofit.create(WikiAPI.class);
+        return api.getNearbyArticles(url);
+    }
+
+    private void configureAdapters(String address, List<Map<String, String>> data) {
         RecyclerView.Adapter<HeaderAdapter.HeaderViewHolder>
                 headerAdapter = new HeaderAdapter(address);
         RecyclerView.Adapter<RecyclerViewAdapter.RVViewHolder>
