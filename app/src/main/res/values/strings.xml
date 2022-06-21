@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">HappyDoniaTestProject</string>
+    <string name="location_header">TestText</string>
+    <string name="permission_denied">You should grant location permission to use this app</string>
+    <string name="permission_title">Location permission</string>
+    <string name="download_error_string">An error happened while downloading the data</string>
+    <string name="download_title_string">Download Error</string>
+    <string name="title">Title</string>
+    <string name="distance">Distance</string>
+</resources>
